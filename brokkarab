@@ -1,0 +1,760 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Ù…Ø§Ø¨ Ø¨ÙŠÙˆØª Ø¹Ø±Ø¨ v2", "BloodTheme")
+local Tab = Window:NewTab("ØªØ®Ø±ÙŠØ¨")
+local Section = Tab:NewSection("ØªØ·ÙŠØ± Ø§Ù„Ù†Ø§Ø³")
+Section:NewButton("on", "ButtonInfo", function()
+    -- I DONT OWN THIS SCRIPT
+
+local lp = game:FindService("Players").LocalPlayer
+
+local function gplr(String)
+
+	local Found = {}	local strl = String:lower()
+
+	if strl == "all" then
+
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+
+			table.insert(Found,v)
+
+		end
+
+	elseif strl == "others" then
+
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+
+			if v.Name ~= lp.Name then
+
+				table.insert(Found,v)
+
+			end
+
+		end 
+
+	elseif strl == "me" then
+
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+
+			if v.Name == lp.Name then
+
+				table.insert(Found,v)
+
+			end
+
+		end 
+
+	else
+
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+
+			if v.Name:lower():sub(1, #String) == String:lower() then
+
+				table.insert(Found,v)
+
+			end
+
+		end 
+
+	end
+
+	return Found 
+
+end
+
+local function notif(str,dur)
+
+	game:FindService("StarterGui"):SetCore("SendNotification", {
+
+		Title = "yeet gui",
+
+		Text = str,
+
+		Icon = "rbxassetid://2005276185",
+
+		Duration = dur or 3
+
+	})
+
+end
+
+--// sds
+
+local h = Instance.new("ScreenGui")
+
+local Main = Instance.new("ImageLabel")
+
+local Top = Instance.new("Frame")
+
+local Title = Instance.new("TextLabel")
+
+local TextBox = Instance.new("TextBox")
+
+local TextButton = Instance.new("TextButton")
+
+h.Name = "h"
+
+h.Parent = game:GetService("CoreGui")
+
+h.ResetOnSpawn = false
+
+Main.Name = "Main"
+
+Main.Parent = h
+
+Main.Active = true
+
+Main.Draggable = true
+
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+Main.BorderSizePixel = 0
+
+Main.Position = UDim2.new(0.174545452, 0, 0.459574461, 0)
+
+Main.Size = UDim2.new(0, 454, 0, 218)
+
+Main.Image = "rbxassetid://2005276185"
+
+Top.Name = "Top"
+
+Top.Parent = Main
+
+Top.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+
+Top.BorderSizePixel = 0
+
+Top.Size = UDim2.new(0, 454, 0, 44)
+
+Title.Name = "Title"
+
+Title.Parent = Top
+
+Title.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
+
+Title.BorderSizePixel = 0
+
+Title.Position = UDim2.new(0, 0, 0.295454562, 0)
+
+Title.Size = UDim2.new(0, 454, 0, 30)
+
+Title.Font = Enum.Font.SourceSans
+
+Title.Text = "ØªÙ… ØªØ±Ø¬Ù…Ù‡  KATAKORI.ZR"
+
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+Title.TextScaled = true
+
+Title.TextSize = 14.000
+
+Title.TextWrapped = true
+
+TextBox.Parent = Main
+
+TextBox.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
+
+TextBox.BorderSizePixel = 0
+
+TextBox.Position = UDim2.new(0.0704845786, 0, 0.270642221, 0)
+
+TextBox.Size = UDim2.new(0, 388, 0, 62)
+
+TextBox.Font = Enum.Font.SourceSans
+
+TextBox.PlaceholderText = "Ø§Ø³Ù… Ø§Ù„Ø¶Ø­ÙŠÙ‡ "
+
+TextBox.Text = ""
+
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+TextBox.TextScaled = true
+
+TextBox.TextSize = 14.000
+
+TextBox.TextWrapped = true
+
+TextButton.Parent = Main
+
+TextButton.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
+
+TextButton.BorderSizePixel = 0
+
+TextButton.Position = UDim2.new(0.10352423, 0, 0.596330225, 0)
+
+TextButton.Size = UDim2.new(0, 359, 0, 50)
+
+TextButton.Font = Enum.Font.SourceSans
+
+TextButton.Text = "ØªØ·ÙŠØ±'"
+
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+TextButton.TextScaled = true
+
+TextButton.TextSize = 14.000
+
+TextButton.TextWrapped = true
+
+TextButton.MouseButton1Click:Connect(function()
+
+	local Target = gplr(TextBox.Text)
+
+	if Target[1] then
+
+		Target = Target[1]
+
+		
+
+		local Thrust = Instance.new('BodyThrust', lp.Character.HumanoidRootPart)
+
+		Thrust.Force = Vector3.new(9999,9999,9999)
+
+		Thrust.Name = "YeetForce"
+
+		repeat
+
+			lp.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
+
+			Thrust.Location = Target.Character.HumanoidRootPart.Position
+
+			game:FindService("RunService").Heartbeat:wait()
+
+		until not Target.Character:FindFirstChild("Head")
+
+	else
+
+		notif("Invalid player")
+
+	end
+
+end)
+
+--//fsddfsdf
+
+notif("Loaded successfully! Created by scuba#0001", 5)
+end)
+local Tab = Window:NewTab("Ø§Ù†Ù…ÙŠØ´Ù†")
+local Section = Tab:NewSection("Ø¶Ø±Ø¨")
+Section:NewButton("on", "ButtonInfo", function()
+    loadstring(game:HttpGet(('https://pastefy.ga/GvnHVjT5/raw'),true))()
+end)
+local Tab = Window:NewTab("ðŸ”ž")
+local Section = Tab:NewSection("Ø¨Ø§Ù†Ø¬")
+Section:NewButton("on", "ButtonInfo", function()
+    
+local SimpleSexGUI = Instance.new("ScreenGui")
+ 
+local FGUI = Instance.new("Frame")
+ 
+local btnNaked = Instance.new("TextButton")
+ 
+local btnSex = Instance.new("TextButton")
+ 
+local tbxVictim = Instance.new("TextBox")
+ 
+local lblFUCKEMALL = Instance.new("TextLabel")
+ 
+local ImageLabel = Instance.new("ImageLabel")
+ 
+local lbltitle = Instance.new("TextLabel")
+ 
+local TextLabel = Instance.new("TextLabel")
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+--Properties
+ 
+SimpleSexGUI.Name = "SimpleSexGUI"
+SimpleSexGUI.Parent = game.CoreGui
+ 
+ 
+FGUI.Name = "FGUI"
+FGUI.Parent = SimpleSexGUI
+FGUI.BackgroundColor3 = Color3.new(255,255,255)
+FGUI.BorderSizePixel = 1
+FGUI.Position = UDim2.new(0,0, 0.667, 0)
+FGUI.Size = UDim2.new(0,317, 0,271)
+FGUI.Draggable = true
+ 
+ 
+ 
+lbltitle.Name = "Title"
+lbltitle.Parent = FGUI
+lbltitle.BackgroundColor3 = Color3.new(255,255,255)
+lbltitle.BorderSizePixel = 1
+lbltitle.Position = UDim2.new (0, 0,-0.122, 0)
+lbltitle.Size = UDim2.new (0, 317,0, 33)
+lbltitle.Visible = true
+lbltitle.Active = true
+lbltitle.Draggable = false
+lbltitle.Selectable = true
+lbltitle.Font = Enum.Font.SourceSansBold
+lbltitle.Text = "[Ø¨Ø§Ù†Ø¬]"
+lbltitle.TextColor3 = Color3.new(0, 0, 0)
+lbltitle.TextSize = 20
+ 
+ 
+ 
+ 
+ 
+btnSex.Name = "Sex"
+btnSex.Parent = FGUI
+btnSex.BackgroundColor3 = Color3.new(255,255,255)
+btnSex.BorderSizePixel = 1
+btnSex.Position = UDim2.new (0.044, 0,0.229, 0)
+btnSex.Size = UDim2.new (0, 99,0, 31)
+btnSex.Visible = true
+btnSex.Active = true
+btnSex.Draggable = false
+btnSex.Selectable = true
+btnSex.Font = Enum.Font.SourceSansBold
+btnSex.Text = "[Ø¨Ø¯Ø¡]"
+btnSex.TextColor3 = Color3.new(0, 0, 0)
+btnSex.TextSize = 20
+ 
+ 
+ 
+ 
+tbxVictim.Name = "VictimTEXT"
+tbxVictim.Parent = FGUI
+tbxVictim.BackgroundColor3 = Color3.new(255,255,255)
+tbxVictim.BorderSizePixel = 1
+tbxVictim.Position = UDim2.new (0.533, 0,0.229, 0)
+tbxVictim.Size = UDim2.new (0, 133,0, 27)
+tbxVictim.Visible = true
+tbxVictim.Active = true
+tbxVictim.Draggable = false
+tbxVictim.Selectable = true
+tbxVictim.Font = Enum.Font.SourceSansBold
+tbxVictim.Text = "[Ø§Ø³Ù… Ø§Ù„Ø§Ø¹Ø¨]"
+tbxVictim.TextColor3 = Color3.new(0, 0, 0)
+tbxVictim.TextSize = 20
+ 
+lblFUCKEMALL.Name = "FUCKEMALL"
+lblFUCKEMALL.Parent = FGUI
+lblFUCKEMALL.BackgroundColor3 = Color3.new(255,255,255)
+lblFUCKEMALL.BorderSizePixel = 1
+lblFUCKEMALL.Position = UDim2.new (0.025, 0,0.856, 0)
+lblFUCKEMALL.Size = UDim2.new (0, 301,0, 27)
+lblFUCKEMALL.Visible = true
+lblFUCKEMALL.Font = Enum.Font.SourceSansBold
+lblFUCKEMALL.Text = "FUCK AND FUCK"
+lblFUCKEMALL.TextColor3 = Color3.new(0, 0, 0)
+lblFUCKEMALL.TextSize = 20
+ 
+ImageLabel.Name = "ImageLabel"
+ImageLabel.Parent = FGUI
+ImageLabel.Image = "http://www.roblox.com/asset/?id=42837..."
+ImageLabel.BorderSizePixel = 1
+ImageLabel.Position = UDim2.new (0.274, 0,0.358, 0)
+ImageLabel.Size = UDim2.new (0, 106,0, 121)
+ 
+ 
+ 
+ 
+--Scripts
+ 
+ 
+btnSex.MouseButton1Click:Connect(function()
+ 
+local player = tbxVictim.Text
+local stupid = Instance.new('Animation')
+stupid.AnimationId = 'rbxassetid://148840371'
+hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+pcall(function()
+    hummy.Parent.Pants:Destroy()
+end)
+pcall(function()
+    hummy.Parent.Shirt:Destroy()
+end)
+local notfunny = hummy:LoadAnimation(stupid)
+notfunny:Play()
+notfunny:AdjustSpeed(10)
+while hummy.Parent.Parent ~= nil do
+wait()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[tbxVictim.Text].Character.HumanoidRootPart.CFrame
+end
+end)
+--Script Made by Maxilito
+--Loadstring Converter Made by ExpgXploit
+end)
+Section:NewSlider("speed", "SliderInfo", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+local Tab = Window:NewTab("fps")
+local Section = Tab:NewSection("Ø§Ø²Ø§Ù„Ø§ Ù„Ø§Ù‚")
+Section:NewButton("ButtonText", "ButtonInfo", function()
+   local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+local g = game
+local w = g.Workspace
+local l = g.Lighting
+local t = w.Terrain
+t.WaterWaveSize = 0
+t.WaterWaveSpeed = 0
+t.WaterReflectance = 0
+t.WaterTransparency = 0
+l.GlobalShadows = false
+l.FogEnd = 9e9
+l.Brightness = 0
+settings().Rendering.QualityLevel = "Level01"
+for i, v in pairs(g:GetDescendants()) do
+    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+    elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+        v.Transparency = 1
+    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+        v.Lifetime = NumberRange.new(0)
+    elseif v:IsA("Explosion") then
+        v.BlastPressure = 1
+        v.BlastRadius = 1
+    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+        v.Enabled = false
+    elseif v:IsA("MeshPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+        v.TextureID = 10385902758728957
+    end
+end
+for i, e in pairs(l:GetChildren()) do
+    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+        e.Enabled = false
+    end
+end
+end)
+local Tab = Window:NewTab("ØªØ­ÙˆÙ„Ø§Øª")
+local Section = Tab:NewSection("Ù…ÙˆØ²")
+Section:NewButton("on", "ButtonInfo", function()
+    loadstring(game:httpget("https://pastebin.com/raw/QZ9h83MC"))()
+end)
+local Tab = Window:NewTab("RTX")
+local Section = Tab:NewSection("ÙØ§Ø¦Ù‚")
+Section:NewButton("on", "ButtonInfo", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/EJskzezp'))()
+end)
+local Tab = Window:NewTab("Ø§ÙˆØ§Ù…Ø±")
+local Section = Tab:NewSection("Ø§Ø¯Ù…Ù† v1")
+Section:NewButton("on", "ButtonInfo", function()
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+OpenBeautyFrame.Name = "v3"
+OpenBeautyFrame.Parent = OpenFrame
+OpenBeautyFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+OpenBeautyFrame.BorderSizePixel = 0
+OpenBeautyFrame.Position = UDim2.new(0.988907099, 0, -0.148148149, 0)
+OpenBeautyFrame.Size = UDim2.new(0, 3, 0, 33)
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = GUI
+MainFrame.Active = true
+MainFrame.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.30754894, 0, 0.235294133, 0)
+MainFrame.Size = UDim2.new(0, 412, 0, 263)
+MainFrame.Visible = false
+MainFrame.Draggable = true
+
+MainFrameBeautyA.Name = "v3"
+MainFrameBeautyA.Parent = MainFrame
+MainFrameBeautyA.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+MainFrameBeautyA.BorderSizePixel = 0
+MainFrameBeautyA.Size = UDim2.new(0, 412, 0, 22)
+MainFrameBeautyA.Visible = false
+
+CloseButton.Name = "v3"
+CloseButton.Parent = MainFrameBeautyA
+CloseButton.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+CloseButton.BackgroundTransparency = 1.000
+CloseButton.BorderSizePixel = 0
+CloseButton.Position = UDim2.new(0.905339777, 0, 0, 0)
+CloseButton.Size = UDim2.new(0, 39, 0, 22)
+CloseButton.Font = Enum.Font.Cartoon
+CloseButton.Text = "Close"
+CloseButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+CloseButton.TextScaled = true
+CloseButton.TextSize = 14.000
+CloseButton.TextWrapped = true
+CloseButton.MouseButton1Down:connect(function()
+OpenFrame.Visible = true
+MainFrame.Visible = false
+MainFrameBeautyA.Visible = false
+MainFrameBeautyB.Visible = false
+MainFrameCenterBeautyA_2.Visible = false
+MainFrameCenterBeautyA.Visible = false
+end)
+
+EXPLOIT1.Name = "v3"
+EXPLOIT1.Parent = MainFrame
+EXPLOIT1.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT1.BorderSizePixel = 0
+EXPLOIT1.Position = UDim2.new(0.024271844, 0, 0.129277572, 0)
+EXPLOIT1.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT1.Font = Enum.Font.Cartoon
+EXPLOIT1.Text = "FE Voodoo Child"
+EXPLOIT1.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT1.TextScaled = true
+EXPLOIT1.TextSize = 14.000
+EXPLOIT1.TextWrapped = true
+EXPLOIT1.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/RTSMznAk'),true))()
+end)
+
+MainFrameCenterBeautyA.Name = "v3"
+MainFrameCenterBeautyA.Parent = MainFrame
+MainFrameCenterBeautyA.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+MainFrameCenterBeautyA.BorderSizePixel = 0
+MainFrameCenterBeautyA.Position = UDim2.new(0.288834959, 0, 0.129277572, 0)
+MainFrameCenterBeautyA.Size = UDim2.new(0, 8, 0, 185)
+MainFrameCenterBeautyA.Visible = false
+
+MainFrameCenterBeautyA_2.Name = "v3"
+MainFrameCenterBeautyA_2.Parent = MainFrame
+MainFrameCenterBeautyA_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+MainFrameCenterBeautyA_2.BorderSizePixel = 0
+MainFrameCenterBeautyA_2.Position = UDim2.new(0.699029148, 0, 0.129277557, 0)
+MainFrameCenterBeautyA_2.Size = UDim2.new(0, 8, 0, 185)
+MainFrameCenterBeautyA_2.Visible = false
+
+EXPLOIT5.Name = "v3"
+EXPLOIT5.Parent = MainFrame
+EXPLOIT5.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT5.BorderSizePixel = 0
+EXPLOIT5.Position = UDim2.new(0.388349503, 0, 0.129277572, 0)
+EXPLOIT5.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT5.Font = Enum.Font.Cartoon
+EXPLOIT5.Text = "FE Galacta"
+EXPLOIT5.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT5.TextScaled = true
+EXPLOIT5.TextSize = 14.000
+EXPLOIT5.TextWrapped = true
+EXPLOIT5.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/YqgUQ5Zj'),true))()
+end)
+
+EXPLOIT9.Name = "v3"
+EXPLOIT9.Parent = MainFrame
+EXPLOIT9.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT9.BorderSizePixel = 0
+EXPLOIT9.Position = UDim2.new(0.75242722, 0, 0.129277572, 0)
+EXPLOIT9.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT9.Font = Enum.Font.Cartoon
+EXPLOIT9.Text = "Netless V5 (wait 10 seconds)"
+EXPLOIT9.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT9.TextScaled = true
+EXPLOIT9.TextSize = 14.000
+EXPLOIT9.TextWrapped = true
+EXPLOIT9.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/bDz8RLNC'),true))()
+end)
+
+EXPLOIT6.Name = "v3"
+EXPLOIT6.Parent = MainFrame
+EXPLOIT6.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT6.BorderSizePixel = 0
+EXPLOIT6.Position = UDim2.new(0.388349503, 0, 0.323193908, 0)
+EXPLOIT6.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT6.Font = Enum.Font.Cartoon
+EXPLOIT6.Text = "FE Jump In The Caac"
+EXPLOIT6.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT6.TextScaled = true
+EXPLOIT6.TextSize = 14.000
+EXPLOIT6.TextWrapped = true
+EXPLOIT6.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/JBCfFnwW'),true))()
+end)
+
+EXPLOIT7.Name = "v3"
+EXPLOIT7.Parent = MainFrame
+EXPLOIT7.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT7.BorderSizePixel = 0
+EXPLOIT7.Position = UDim2.new(0.388349503, 0, 0.520912528, 0)
+EXPLOIT7.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT7.Font = Enum.Font.Cartoon
+EXPLOIT7.Text = "FE Sin Dragon"
+EXPLOIT7.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT7.TextScaled = true
+EXPLOIT7.TextSize = 14.000
+EXPLOIT7.TextWrapped = true
+EXPLOIT7.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/AC7at7uJ'),true))()
+end)
+
+EXPLOIT8.Name = "v3"
+EXPLOIT8.Parent = MainFrame
+EXPLOIT8.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT8.BorderSizePixel = 0
+EXPLOIT8.Position = UDim2.new(0.388349503, 0, 0.711026609, 0)
+EXPLOIT8.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT8.Font = Enum.Font.Cartoon
+EXPLOIT8.Text = "Reaper Hub"
+EXPLOIT8.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT8.TextScaled = true
+EXPLOIT8.TextSize = 14.000
+EXPLOIT8.TextWrapped = true
+EXPLOIT8.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/C0PX7S1T'),true))()
+end)
+
+EXPLOIT10.Name = "v3"
+EXPLOIT10.Parent = MainFrame
+EXPLOIT10.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT10.BorderSizePixel = 0
+EXPLOIT10.Position = UDim2.new(0.75242722, 0, 0.323193908, 0)
+EXPLOIT10.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT10.Font = Enum.Font.Cartoon
+EXPLOIT10.Text = "FE Fling Gui (Auto Updates)"
+EXPLOIT10.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT10.TextScaled = true
+EXPLOIT10.TextSize = 14.000
+EXPLOIT10.TextWrapped = true
+EXPLOIT10.MouseButton1Down:connect(function()
+loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+end)
+
+EXPLOIT11.Name = "v3"
+EXPLOIT11.Parent = MainFrame
+EXPLOIT11.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT11.BorderSizePixel = 0
+EXPLOIT11.Position = UDim2.new(0.75242722, 0, 0.520912528, 0)
+EXPLOIT11.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT11.Font = Enum.Font.Cartoon
+EXPLOIT11.Text = "FE Gauntlet"
+EXPLOIT11.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT11.TextScaled = true
+EXPLOIT11.TextSize = 14.000
+EXPLOIT11.TextWrapped = true
+EXPLOIT11.MouseButton1Down:connect(function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/hQPjzRw1'),true))()
+end)
+
+EXPLOIT12.Name = "v3"
+EXPLOIT12.Parent = MainFrame
+EXPLOIT12.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT12.BorderSizePixel = 0
+EXPLOIT12.Position = UDim2.new(0.75242722, 0, 0.711026609, 0)
+EXPLOIT12.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT12.Font = Enum.Font.Cartoon
+EXPLOIT12.Text = "FE Cyber Sword"
+EXPLOIT12.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT12.TextScaled = true
+EXPLOIT12.TextSize = 14.000
+EXPLOIT12.TextWrapped = true
+EXPLOIT12.MouseButton1Down:connect(function()
+loadstring(game:HttpGet('https://pastebin.com/raw/9QvXVnnp', true))()
+end) 
+
+EXPLOIT2.Name = "v3"
+EXPLOIT2.Parent = MainFrame
+EXPLOIT2.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT2.BorderSizePixel = 0
+EXPLOIT2.Position = UDim2.new(0.024271844, 0, 0.323193908, 0)
+EXPLOIT2.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT2.Font = Enum.Font.Cartoon
+EXPLOIT2.Text = "FE Pog Dance"
+EXPLOIT2.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT2.TextScaled = true
+EXPLOIT2.TextSize = 14.000
+EXPLOIT2.TextWrapped = true
+EXPLOIT2.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://pastebin.com/raw/JT5yZbDs",true))()
+end)
+
+EXPLOIT3.Name = "v3"
+EXPLOIT3.Parent = MainFrame
+EXPLOIT3.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT3.BorderSizePixel = 0
+EXPLOIT3.Position = UDim2.new(0.024271844, 0, 0.520912528, 0)
+EXPLOIT3.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT3.Font = Enum.Font.Cartoon
+EXPLOIT3.Text = "FE World Eater"
+EXPLOIT3.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT3.TextScaled = true
+EXPLOIT3.TextSize = 14.000
+EXPLOIT3.TextWrapped = true
+EXPLOIT3.MouseButton1Down:connect(function()
+loadstring(game:HttpGet("https://pastebin.com/raw/hdPJ28NL"))()
+end)
+
+EXPLOIT4.Name = "v3"
+EXPLOIT4.Parent = MainFrame
+EXPLOIT4.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+EXPLOIT4.BorderSizePixel = 0
+EXPLOIT4.Position = UDim2.new(0.024271844, 0, 0.711026609, 0)
+EXPLOIT4.Size = UDim2.new(0, 92, 0, 32)
+EXPLOIT4.Font = Enum.Font.Cartoon
+EXPLOIT4.Text = "Ù…Ø§Ø¨ Ø¨ÙŠÙˆØª v1"
+EXPLOIT4.TextColor3 = Color3.fromRGB(255, 0, 0)
+EXPLOIT4.TextScaled = true
+EXPLOIT4.TextSize = 14.000
+EXPLOIT4.TextWrapped = true
+EXPLOIT4.MouseButton1Down:connect(function()
+
+end)
+
+MainFrameBeautyB.Name = "v3"
+MainFrameBeautyB.Parent = MainFrame
+MainFrameBeautyB.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+MainFrameBeautyB.BorderSizePixel = 0
+MainFrameBeautyB.Position = UDim2.new(0, 0, 0.916349828, 0)
+MainFrameBeautyB.Size = UDim2.new(0, 412, 0, 22)
+MainFrameBeautyB.Visible = false
+end)
+local Tab = Window:NewTab("v3")
+local Section = Tab:NewSection("R6")
+Section:NewButton("on", "ButtonInfo", function()
+    -- Made by Izekai
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local R6 = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+R6.Name = "v3"
+R6.Parent = ScreenGui
+R6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+R6.Position = UDim2.new(-0.000343383319, 0, 0.32815966, 0)
+R6.Size = UDim2.new(0, 29, 0, 29)
+R6.Font = Enum.Font.SourceSans
+R6.Text = "R6"
+R6.TextColor3 = Color3.fromRGB(0, 0, 0)
+R6.TextSize = 14.000
+R6.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet(('https://pastebin.com/raw/jHGVauVX'),true))()
+end)
+
+TextButton.Parent = ScreenGui
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Position = UDim2.new(0, 0, 0.414634138, 0)
+TextButton.Size = UDim2.new(0, 72, 0, 27)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Respawn"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+TextButton.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet(('https://pastebin.com/raw/ukFZuXbb'),true))()
+end)
+end)
+local Tab = Window:NewTab("v3")
+local Section = Tab:NewSection("melon ss V1")
+Section:NewButton("on", "ButtonInfo", function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/C00LMelon/True-SS-Hub/main/Protected.lua%20(4).txt'),true))()
+end)
+Section:NewToggle("Ø§Ø¯Ù…Ù† v2", "ToggleInfo", function(state)
+    if state then
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    else
+        print("Toggle Off")
+    end
+end)
